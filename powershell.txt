@@ -1,0 +1,14 @@
+Abre a pasta e digita na barra 'powershell'
+
+cd + nome da pasta
+
+npm init -y (criando arquivo json)
+npm install ejs (instalando ejs)
+npm install -g (atualizando global ?!)
+npm install -g npm@9.2.0 (forçando a atualizaçao)
+
+npm install express (ajuda a criar servidor)
+node server (aparece o console.log criado no arquivo server, indicando que ta funcionando)
+
+crtl+l (limpa)
+crtl+c (para de rodar)
