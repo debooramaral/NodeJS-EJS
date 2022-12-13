@@ -64,3 +64,27 @@ crtl+c (PARA de rodar a aplicação pelo terminal)
 RODANDO: node server ! 
 
 da erro .. o mesmo erro antes de criar a pasta views
+
+* pasta views no local errado, por isso não funcinou!
+
+Separando partes do layout
+
+para utilizar as partes do html (index) em outras paginas.. criamos arquivos com os nomes e colamos os elementos do index nele;
+
+- head.ejs
+- header.ejs
+- footer.ejs
+
+cada um com sua parte, retirada do html anteriormente construida.
+
+Agora vamos incluir arquivos ejs no documento
+
+	SINTAXE: <%- include('head'); %>
+
+		<%- %> (falando para o ejs, 
+		include('head'); (entende-se como comando de ejs ~include~ que dentro informa o que vai incluir 'head')
+
+ATENÇÂO: 
+
+alterações feitas em ejs, não precisa parar o servidor; agora se as alterações forem em js, ai sim precisa para o servidor
+
