@@ -88,3 +88,74 @@ ATENÇÂO:
 
 alterações feitas em ejs, não precisa parar o servidor; agora se as alterações forem em js, ai sim precisa para o servidor
 
+
+Nova pagina e menu
+
+- criamos o about, pegando os demais arquivo ejs,  acrescentando apenas um main e div, h1 e p no corpo da pagina
+
+- agora faremos o caminho de sobre > index e o contrario (/sobre > / e / > /sobre)
+	tudo linkado, devidamente
+
+Viwes e Partials - Organização
+
+organizando pastas e arquivos !
+
+	- partials / partes: head, header e footer
+	- pages / paginas : index e about
+	
+arrumando as chamadas 'server'
+	* não precisa chamar a pasta views pq o express ja entende que todos os arquivos precisa estar dentro desta pasta.
+
+	app.get("/", function (req, res){
+	    res.render("pages/index  ");
+	})
+	app.get("/sobre", function (req, res){
+	    res.render("pages/about");
+	})
+
+em index e aboute, em pages.. arrumar o caminho também!
+
+	('../partials/hear .. header .. footer')
+
+Passando um objeto para ejs
+
+dentro de about, especificamente dentro do body e antes da main, segundo include ejs que é o header
+
+        <%- include('../partials/header', {pagina: 'sobre'}); %>
+
+	entre {} é o objeto qe o ejs, permite passar
+
+dentro de header, precisamos colocar a pagina que usou de referencia
+
+	<p>Página: <%- pagina %></p>
+	
+	portanto dentro de sobre, ira renderizar o titulo da pagina que esta
+
+então conclui-se que o objeto que o ejs permite, pode ter algum conteudo.. não sendo unicamente apenas uma palavras, pode ser algo maior por exemplo. 
+logo chamamos a sintaxe do ejs e passa o nome do objeto referido, nada de codigos muito grandes, a não ser o nome do objeto mesmo <%- %>
+
+- neste sentido, que passamos um objeto, o sobre funciona normal.. porém o index não. 
+	isso acontece pois, estamos utilizando o header em outro lugar, que nao tem 'pagina' como objeto anexado; lembrando que o nome do objeto deve ser igual ao nome da pagina
+
+        <%- include('../partials/header', {pagina: 'Inicio'}); %>
+
+mudamos de lugar, e deixamos a pagina no header, após o nav. Na interface do front ele ficou embaixo da barra de menu
+
+Agora ..
+
+não passando o index o objeto, preciso que o header entenda que quando NÃO for passado um objeto pagina, ele mostrará HOME. E se for passado, o objeto pagina, ai mostra o que vem no objeto
+
+    <p>Página: <%= typeof pagina != 'undefined' ? pagina: 'Inicio' %></p>
+
+o index não terá nada, não passaremos nada.. que seria ~ , {pagina: 'Inicio'} ~
+
+mas quando header NÃO RECEBER nada de objeto, ele entenda ser 'Inicio'
+	= (renderizando algo que veio dinamicamente)
+	typeof 
+	pagina != '' ? pagina:  (comparação)
+
+se pagina for diferente de indefinido, ENTÃO mostre o Inicio (fizemos uma condição de TERNÁRIO em JS)
+
+após alterações.. tanto o inicio quando o sobre, ambos aparecem Inicio . . POIS TAMBÉM RETIREI de about o objeto
+
+quando informo o objeto na pagina indicada, ai sim aparece

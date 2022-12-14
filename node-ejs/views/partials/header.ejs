@@ -1,0 +1,17 @@
+<header>
+    <nav class="navbar navbar-expand-lg bg-light p-2">
+        <a class="navbar-brand" href="/">EJS</a> <!--aqui é como se fosse a logo, nosso HOME (/)-->
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/">Inicio</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/sobre">Sobre</a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- <p>Página: <%# pagina %></p>  - comentario em ejs é # após < % e o html é normal como ja se sabe -->
+    <p>Página: <%= typeof pagina != 'undefined' ? pagina: 'Inicio' %></p> <!-- ficando portanto assim.. com ternário, para o index não 'reclamar' e puxar o Inicio automatico -->
+
+</header> 
