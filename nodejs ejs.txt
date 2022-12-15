@@ -159,3 +159,115 @@ se pagina for diferente de indefinido, ENTÃO mostre o Inicio (fizemos uma condi
 após alterações.. tanto o inicio quando o sobre, ambos aparecem Inicio . . POIS TAMBÉM RETIREI de about o objeto
 
 quando informo o objeto na pagina indicada, ai sim aparece
+
+Foreach
+
+no INDEX
+	- criei uma lista com li e msg
+	- suponhamos que eu quero que venha la do backend e seja renderizado no ejs
+	- fui no server.js e criei um ARRAY com varios objetos dentro
+
+const items = [
+        {
+            title: "D",
+            message: "Desenvolver aplicações/serviços de forma fácil"
+        },
+        {
+            title: "E",
+            message: "EJS usa JavaScript para renderizar HTML"
+        },
+        {
+            title: "M",
+            message: "Muito fácil de usar"
+        },
+        {
+            title: "A",
+            message: "Amorzinho"
+        },
+        {
+            title: "I",
+            message: "Install eja"
+        },
+        {
+            title: "S",
+            message: "Sintaxe simples"
+        }
+    ];
+
+isso no app.get do index, antes da res.render('pages/index');
+
+	- agora precisamos passar para o nosso index
+	- arquivo ejs aceitam objetos, portanto eu passo na frente do res.render dentro do parenteses
+
+	res.render("pages/index", {
+        	qualitys: items,
+	});
+
+pronto! criamos e passamos o objeto
+
+	- portanto no index dentro do server, eu passo o index e o objeto criado
+	- precisamos ir no index e usar o qualitys
+	- eu apago o que ja tenho de lista e li e insiro um FOREACH, um looping para poder olhar o array de objeto, renderizando cada elemento na li
+	- faço um include ejs no html e chamo o 'qualitys' + forEach e uma função anonima, sem nome
+	- ja que qualitys recebe items, ele fará a leitura de cada elemento..
+	- a função recebe quality, pois referencia um item do array, apenas e a cada vez que ele rodar, o forEach, será cada item do array
+
+		<% qualitys.forEach(function (quality) {
+                    
+                }) %>
+
+aqui esta a função, vazia por enquanto
+
+	- agora devemos colocar nosso li, dentro da função..
+	- eu não posso simplesmente colar um arquivo html dentro de ejs, com função js
+	- feche a tag ejs e cole o html
+	- depois abra novamente
+
+		<% qualitys.forEach(function (quality) { %>                    
+                    <li>
+                        <strong>D</strong> escrito algo com D
+                    </li>
+                <% }) %>
+
+	- dai faz a substituição da escrita com os elementos do array
+		
+		<% qualitys.forEach(function (a) { %>                    
+                    <li>
+                        <strong>a.title</strong> a.message
+                    </li>
+                <% }) %>
+	- alterado o arquivo js é preciso ir no terminal PARAR o servidor e depois rodar de novo
+
+		a.title a.message
+		a.title a.message
+		a.title a.message
+		a.title a.message
+		a.title a.message
+		a.title a.message
+		D escrito algo com D
+
+aparece desta forma na nossa pagina, pois isso é java script
+
+	- devemos colocar <% novamente para que entenda ser js e nçao html
+
+	<%= a.title5> faço uso do = pois estou printando algo na tela
+
+		<% qualitys.forEach(function (a) { %>                    
+                    <li>
+                        <strong><%= a.title %></strong> <%= a.message %>
+                    </li>
+                <% }) %>
+
+resultado:
+
+		D Desenvolver aplicações/serviços de forma fácil
+		E EJS usa JavaScript para renderizar HTML
+		M Muito fácil de usar
+		A Amorzinho
+		I Install ejS
+		S Sintaxe simples
+		
+	- questão de BOAS PRATICAS: temos um plural de qualitys, mas o 'a' não esta adequado, portanto usamos o nome no singular. Afinal estamos falando de um looping
+
+	
+		
