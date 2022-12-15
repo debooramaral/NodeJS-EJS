@@ -269,5 +269,7 @@ resultado:
 		
 	- questão de BOAS PRATICAS: temos um plural de qualitys, mas o 'a' não esta adequado, portanto usamos o nome no singular. Afinal estamos falando de um looping
 
+
+
 	
 		
